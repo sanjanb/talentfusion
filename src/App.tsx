@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,6 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Dashboard from "./components/Dashboard";
+import Portfolio from "./components/Portfolio";
 
 // Create dashboard page component
 const DashboardPage = () => {
@@ -19,25 +19,12 @@ const DashboardPage = () => {
   );
 };
 
-// Create portfolio page component (placeholder for now)
+// Create portfolio page component with the new Portfolio component
 const PortfolioPage = () => {
   return (
     <div className="min-h-screen bg-background pt-20">
       <Header />
-      <div className="container max-w-7xl mx-auto py-10 px-4 md:px-6">
-        <h1 className="text-3xl font-bold mb-6">Portfolio</h1>
-        <p className="text-gray-500 dark:text-gray-400 mb-10">
-          Your professional portfolio is being built. Check back soon for your complete showcase.
-        </p>
-        <div className="glass-card p-10 text-center">
-          <div className="text-6xl mb-6">🚧</div>
-          <h2 className="text-2xl font-medium mb-4">Under Construction</h2>
-          <p className="max-w-md mx-auto text-gray-500 dark:text-gray-400">
-            We're putting the finishing touches on your portfolio. 
-            Come back soon to see your skills and projects beautifully showcased.
-          </p>
-        </div>
-      </div>
+      <Portfolio />
     </div>
   );
 };
