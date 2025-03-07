@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Dashboard from "./components/Dashboard";
 import Portfolio from "./components/Portfolio";
+import JobSkillAnalysis from "./components/JobSkillAnalysis";
 
 // Create dashboard page component
 const DashboardPage = () => {
