@@ -94,7 +94,7 @@ const ResumeUpload = () => {
           onClick={handleUpload}
           disabled={isUploading}
           className="w-full"
-          variant="primary"
+          variant="default"
         >
           {isUploading ? (
             <>
