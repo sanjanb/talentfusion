@@ -1,11 +1,15 @@
 
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X, LogIn, UserPlus } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, LogIn, UserPlus, Sun, Moon } from "lucide-react";
 import AnimatedButton from "./ui/AnimatedButton";
+import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/context/ThemeContext";
 
 const Header = () => {
+  const location = useLocation();
+  const { isDarkMode, toggleDarkMode } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
@@ -17,6 +21,11 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   return (
     <header
@@ -43,22 +52,64 @@ const Header = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link to="/dashboard" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          <Link 
+            to="/dashboard" 
+            className={cn(
+              "transition-colors",
+              location.pathname === "/dashboard" 
+                ? "text-blue-600 dark:text-blue-400 font-medium" 
+                : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+            )}
+          >
             Dashboard
           </Link>
-          <Link to="/portfolio" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          <Link 
+            to="/portfolio" 
+            className={cn(
+              "transition-colors",
+              location.pathname === "/portfolio" 
+                ? "text-blue-600 dark:text-blue-400 font-medium" 
+                : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+            )}
+          >
             Portfolio
           </Link>
-          <Link to="/skills" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          <Link 
+            to="/skills" 
+            className={cn(
+              "transition-colors",
+              location.pathname === "/skills" 
+                ? "text-blue-600 dark:text-blue-400 font-medium" 
+                : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+            )}
+          >
             Skills
           </Link>
-          <Link to="/jobs" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          <Link 
+            to="/jobs" 
+            className={cn(
+              "transition-colors",
+              location.pathname === "/jobs" 
+                ? "text-blue-600 dark:text-blue-400 font-medium" 
+                : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+            )}
+          >
             Jobs
           </Link>
         </nav>
         
-        {/* Auth Buttons */}
+        {/* Auth Buttons and Theme Toggle */}
         <div className="hidden md:flex items-center space-x-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleDarkMode}
+            className="rounded-full"
+            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+          </Button>
+          
           <AnimatedButton 
             variant="ghost" 
             size="sm"
@@ -79,12 +130,24 @@ const Header = () => {
         </div>
         
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleDarkMode}
+            className="rounded-full"
+            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+          </Button>
+          
+          <button
+            className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
       
       {/* Mobile Menu */}
@@ -93,29 +156,45 @@ const Header = () => {
           <nav className="flex flex-col space-y-4">
             <Link 
               to="/dashboard" 
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
+              className={cn(
+                "transition-colors py-2",
+                location.pathname === "/dashboard" 
+                  ? "text-blue-600 dark:text-blue-400 font-medium" 
+                  : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+              )}
             >
               Dashboard
             </Link>
             <Link 
               to="/portfolio" 
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
+              className={cn(
+                "transition-colors py-2",
+                location.pathname === "/portfolio" 
+                  ? "text-blue-600 dark:text-blue-400 font-medium" 
+                  : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+              )}
             >
               Portfolio
             </Link>
             <Link 
               to="/skills" 
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
+              className={cn(
+                "transition-colors py-2",
+                location.pathname === "/skills" 
+                  ? "text-blue-600 dark:text-blue-400 font-medium" 
+                  : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+              )}
             >
               Skills
             </Link>
             <Link 
               to="/jobs" 
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
+              className={cn(
+                "transition-colors py-2",
+                location.pathname === "/jobs" 
+                  ? "text-blue-600 dark:text-blue-400 font-medium" 
+                  : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+              )}
             >
               Jobs
             </Link>
@@ -123,7 +202,6 @@ const Header = () => {
               <AnimatedButton 
                 variant="ghost" 
                 className="justify-center"
-                onClick={() => setMobileMenuOpen(false)}
               >
                 <LogIn className="mr-1.5 h-4 w-4" />
                 <span>Log in</span>
@@ -133,7 +211,6 @@ const Header = () => {
                 variant="primary" 
                 className="justify-center"
                 animation="scale"
-                onClick={() => setMobileMenuOpen(false)}
               >
                 <UserPlus className="mr-1.5 h-4 w-4" />
                 <span>Sign up</span>
