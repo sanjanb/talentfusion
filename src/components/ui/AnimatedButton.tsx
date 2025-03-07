@@ -4,9 +4,9 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { type ButtonProps } from "@/components/ui/button";
 
-interface AnimatedButtonProps extends ButtonProps {
+interface AnimatedButtonProps extends Omit<ButtonProps, 'variant'> {
   children: React.ReactNode;
-  variant?: "default" | "outline" | "ghost" | "link" | "primary" | "secondary";
+  variant?: "default" | "outline" | "ghost" | "link" | "primary" | "secondary" | "destructive";
   animation?: "pulse" | "float" | "scale" | "none";
   className?: string;
 }
@@ -43,9 +43,12 @@ const AnimatedButton = ({
     }
   };
 
+  // Only pass standard button variants to the Button component
+  const buttonVariant = (variant !== "primary" && variant !== "secondary") ? variant : "default";
+
   return (
     <Button
-      variant={variant !== "primary" && variant !== "secondary" ? variant : "default"}
+      variant={buttonVariant}
       className={cn(
         "relative overflow-hidden",
         getAnimationClass(),

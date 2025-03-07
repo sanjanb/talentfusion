@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import { ArrowRight, BrainCircuit, PieChart, Briefcase, Award } from "lucide-react";
 import AnimatedButton from "./ui/AnimatedButton";
 import { Link } from "react-router-dom";
+import { cn } from "@/lib/utils";
 
 const Welcome = () => {
   const [currentFeature, setCurrentFeature] = useState(0);
