@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -21,6 +20,7 @@ import SkillRadar from "./SkillRadar";
 import JobCard from "./JobCard";
 import PortfolioPreview from "./PortfolioPreview";
 import SkillGapAnalysis from "./SkillGapAnalysis";
+import ResumeUpload from "./ResumeUpload";
 
 const sampleSkills = [
   { name: "JavaScript", value: 85, category: "Programming" },
@@ -157,22 +157,25 @@ const Dashboard = ({ className }: DashboardProps) => {
           </div>
         </div>
         
-        <div className="lg:col-span-2 glass-card p-6">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold">Recommended Jobs</h2>
-            <Link 
-              to="/jobs" 
-              className="text-sm text-blue-600 dark:text-blue-400 flex items-center hover:underline"
-            >
-              View all
-              <ArrowRight size={14} className="ml-1" />
-            </Link>
-          </div>
-          
-          <div className="space-y-6">
-            {sampleJobs.slice(0, 2).map((job, i) => (
-              <JobCard key={i} {...job} />
-            ))}
+        <div className="lg:col-span-2 space-y-8">
+          <ResumeUpload />
+          <div className="glass-card p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-xl font-semibold">Recommended Jobs</h2>
+              <Link 
+                to="/jobs" 
+                className="text-sm text-blue-600 dark:text-blue-400 flex items-center hover:underline"
+              >
+                View all
+                <ArrowRight size={14} className="ml-1" />
+              </Link>
+            </div>
+            
+            <div className="space-y-6">
+              {sampleJobs.slice(0, 2).map((job, i) => (
+                <JobCard key={i} {...job} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
