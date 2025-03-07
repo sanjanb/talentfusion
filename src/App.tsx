@@ -51,25 +51,12 @@ const SkillsPage = () => {
   );
 };
 
-// Create jobs page component (placeholder for now)
+// Update the JobsPage component
 const JobsPage = () => {
   return (
     <div className="min-h-screen bg-background pt-20">
       <Header />
-      <div className="container max-w-7xl mx-auto py-10 px-4 md:px-6">
-        <h1 className="text-3xl font-bold mb-6">Job Matches</h1>
-        <p className="text-gray-500 dark:text-gray-400 mb-10">
-          Jobs and opportunities matched to your skills and preferences.
-        </p>
-        <div className="glass-card p-10 text-center">
-          <div className="text-6xl mb-6">💼</div>
-          <h2 className="text-2xl font-medium mb-4">Job Matching in Progress</h2>
-          <p className="max-w-md mx-auto text-gray-500 dark:text-gray-400">
-            We're finding the perfect job matches for your unique profile. 
-            Check back soon to discover opportunities tailored just for you.
-          </p>
-        </div>
-      </div>
+      <JobSkillAnalysis />
     </div>
   );
 };
