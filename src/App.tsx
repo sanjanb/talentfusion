@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +10,11 @@ import Header from "./components/Header";
 import Dashboard from "./components/Dashboard";
 import Portfolio from "./components/Portfolio";
 import JobSkillAnalysis from "./components/JobSkillAnalysis";
+import ApplicantDashboard from "./components/ApplicantDashboard";
+import RecruiterDashboard from "./components/RecruiterDashboard";
+import LoginForm from "./components/auth/LoginForm";
+import ApplicantRegister from "./components/auth/ApplicantRegister";
+import RecruiterRegister from "./components/auth/RecruiterRegister";
 
 // Create dashboard page component
 const DashboardPage = () => {
@@ -64,6 +68,54 @@ const JobsPage = () => {
   );
 };
 
+// New ApplicantDashboardPage component
+const ApplicantDashboardPage = () => {
+  return (
+    <div className="min-h-screen bg-background pt-20">
+      <Header />
+      <ApplicantDashboard />
+    </div>
+  );
+};
+
+// New RecruiterDashboardPage component
+const RecruiterDashboardPage = () => {
+  return (
+    <div className="min-h-screen bg-background pt-20">
+      <Header />
+      <RecruiterDashboard />
+    </div>
+  );
+};
+
+// Auth pages
+const LoginPage = () => {
+  return (
+    <div className="min-h-screen bg-background pt-20">
+      <Header />
+      <LoginForm />
+    </div>
+  );
+};
+
+const ApplicantRegisterPage = () => {
+  return (
+    <div className="min-h-screen bg-background pt-20">
+      <Header />
+      <ApplicantRegister />
+    </div>
+  );
+};
+
+const RecruiterRegisterPage = () => {
+  return (
+    <div className="min-h-screen bg-background pt-20">
+      <Header />
+      <RecruiterRegister />
+    </div>
+  );
+};
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -86,6 +138,11 @@ const App = () => (
             <Route path="/portfolio" element={<PortfolioPage />} />
             <Route path="/skills" element={<SkillsPage />} />
             <Route path="/jobs" element={<JobsPage />} />
+            <Route path="/applicant" element={<ApplicantDashboardPage />} />
+            <Route path="/recruiter" element={<RecruiterDashboardPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register/applicant" element={<ApplicantRegisterPage />} />
+            <Route path="/register/recruiter" element={<RecruiterRegisterPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
