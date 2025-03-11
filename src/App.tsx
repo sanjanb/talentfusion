@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/context/ThemeContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import Header from "./components/Header";
+import Header from "./components/Header"; // This import stays the same
 import Dashboard from "./components/Dashboard";
 import Portfolio from "./components/Portfolio";
 import JobSkillAnalysis from "./components/JobSkillAnalysis";
