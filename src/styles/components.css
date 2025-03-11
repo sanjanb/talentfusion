@@ -1,11 +1,10 @@
-
 @layer components {
   .glass-card {
-    @apply bg-white/80 dark:bg-black/80 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-glass rounded-xl;
+    @apply bg-white/80 dark:bg-black/80 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-xl rounded-xl transition-all hover:shadow-lg hover:shadow-blue-500/5;
   }
   
   .glass-light {
-    @apply bg-white/40 backdrop-blur-sm border border-white/20 shadow-subtle rounded-xl;
+    @apply bg-white/40 backdrop-blur-sm border border-white/20 shadow-md rounded-xl transition-all hover:shadow-lg hover:bg-white/50 dark:bg-black/40 dark:hover:bg-black/50;
   }
 
   .shimmer {

@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,6 +15,8 @@ import RecruiterDashboard from "./components/RecruiterDashboard";
 import LoginForm from "./components/auth/LoginForm";
 import ApplicantRegister from "./components/auth/ApplicantRegister";
 import RecruiterRegister from "./components/auth/RecruiterRegister";
+import SkillRadar from "@/components/SkillRadar";
+import { useStore } from "@/store/useStore";
 
 // Create dashboard page component
 const DashboardPage = () => {
@@ -37,22 +38,36 @@ const PortfolioPage = () => {
   );
 };
 
-// Create skills page component (placeholder for now)
+// Update the SkillsPage component
 const SkillsPage = () => {
+  const userSkills = useStore(state => state.skills);
+
   return (
     <div className="min-h-screen bg-background pt-20">
       <Header />
       <div className="container max-w-7xl mx-auto py-10 px-4 md:px-6">
-        <h1 className="text-3xl font-bold mb-6">Skills Analysis</h1>
-        <p className="text-gray-500 dark:text-gray-400 mb-10">
-          Detailed analysis of your skills and recommendations for improvement.
-        </p>
-        <div className="glass-card p-10 text-center">
-          <div className="text-6xl mb-6">📊</div>
-          <h2 className="text-2xl font-medium mb-4">Coming Soon</h2>
-          <p className="max-w-md mx-auto text-gray-500 dark:text-gray-400">
-            Our AI is analyzing your skills. Soon you'll see a detailed breakdown of your strengths and areas for growth.
-          </p>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Current Skills Overview */}
+          <div className="glass-card p-6">
+            <h2 className="text-2xl font-semibold mb-4">Your Skills</h2>
+            <SkillRadar 
+              skills={userSkills.map(skill => ({
+                name: skill.name,
+                value: skill.level,
+                category: skill.category
+              }))}
+              size={250}
+              className="mx-auto mb-6"
+            />
+            <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+              Your current skill proficiency levels
+            </p>
+          </div>
+
+          {/* Skills Gap Analysis */}
+          <div className="lg:col-span-2">
+            <JobSkillAnalysis />
+          </div>
         </div>
       </div>
     </div>
