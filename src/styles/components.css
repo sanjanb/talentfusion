@@ -1,3 +1,4 @@
+
 @layer components {
   .glass-card {
     @apply bg-white/80 dark:bg-black/80 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-xl rounded-xl transition-all hover:shadow-lg hover:shadow-blue-500/5;
@@ -26,4 +27,16 @@
   .section-fade-in > *:nth-child(4) { animation-delay: 0.4s; }
   .section-fade-in > *:nth-child(5) { animation-delay: 0.5s; }
   .section-fade-in > *:nth-child(6) { animation-delay: 0.6s; }
+  
+  .hover-link {
+    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-200 hover:translate-y-[-5px] hover:shadow-lg;
+  }
+  
+  .form-input {
+    @apply border border-input bg-background px-3 py-2 text-sm rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
+  }
 }
