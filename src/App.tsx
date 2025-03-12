@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,6 +17,7 @@ import LoginForm from "./components/auth/LoginForm";
 import ApplicantRegister from "./components/auth/ApplicantRegister";
 import RecruiterRegister from "./components/auth/RecruiterRegister";
 import SkillRadar from "@/components/SkillRadar";
+import LearningPlan from "@/components/LearningPlan";
 import { useStore } from "@/store/useStore";
 
 // Create dashboard page component
@@ -68,6 +70,11 @@ const SkillsPage = () => {
           <div className="lg:col-span-2">
             <JobSkillAnalysis />
           </div>
+        </div>
+        
+        {/* Learning Plan Section */}
+        <div className="mt-12 glass-card p-6">
+          <LearningPlan />
         </div>
       </div>
     </div>
