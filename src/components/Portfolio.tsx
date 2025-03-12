@@ -12,15 +12,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
+// Define Portfolio data interface
+interface PortfolioData {
+  sections: {[key: string]: PortfolioSection};
+  resumeText: string;
+  linkedinSummary: string;
+}
+
 // Mock Firebase functions for demonstration
-const fetchPortfolioData = async (userId: string) => {
+const fetchPortfolioData = async (userId: string): Promise<PortfolioData | null> => {
   // In a real app, this would fetch data from Firebase
   return new Promise(resolve => {
     setTimeout(() => resolve(null), 500);
   });
 };
 
-const savePortfolioData = async (userId: string, data: any) => {
+const savePortfolioData = async (userId: string, data: PortfolioData): Promise<boolean> => {
   // In a real app, this would save data to Firebase
   return new Promise(resolve => {
     setTimeout(() => resolve(true), 500);
@@ -73,10 +80,10 @@ const Portfolio = () => {
         const data = await fetchPortfolioData(userId);
         
         if (data) {
-          // Update state with fetched data
-          setSections(data.sections || sections);
-          setResumeText(data.resumeText || resumeText);
-          setLinkedinSummary(data.linkedinSummary || linkedinSummary);
+          // Update state with fetched data - now properly typed
+          setSections(data.sections);
+          setResumeText(data.resumeText);
+          setLinkedinSummary(data.linkedinSummary);
         }
       } catch (error) {
         toast({
@@ -111,11 +118,13 @@ const Portfolio = () => {
     // Save to Firebase
     try {
       const userId = "current-user-id"; // In a real app, get this from auth context
-      await savePortfolioData(userId, {
+      const portfolioData: PortfolioData = {
         sections,
         resumeText,
         linkedinSummary
-      });
+      };
+      
+      await savePortfolioData(userId, portfolioData);
       
       setEditingSection(null);
       
